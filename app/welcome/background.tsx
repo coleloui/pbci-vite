@@ -1,5 +1,7 @@
 import type { JSX } from 'react'
 import { useEffect, useState } from 'react'
+import classNames from 'classnames'
+
 
 import Tyler from './Tyler.jpg'
 import Trusses from './Trusses.jpg'
@@ -14,7 +16,7 @@ export function Background(): JSX.Element {
         const id = setTimeout(() => {
             setIndex((index + 1) % picArr.length)
             setPic(picArr[index])
-        }, 2000)
+        }, 5500)
 
         return () => {
             clearInterval(id)
@@ -22,8 +24,11 @@ export function Background(): JSX.Element {
     }, [index])
 
     return (
-        <div style={{ zIndex: -1 }}>
-            <img src={`${pic}`} className='testing' />
+        <div className='md:h-275 min-h-200'>
+            {/* <img src={pic} className={classNames('opacity-0 -z-10', i == index ? 'arrive' : 'drop')} /> */}
+            {picArr.map((img, i) => (
+                <img key={i} src={img} className={classNames('opacity-0 -z-10', i == index ? 'arrive' : 'drop')} />
+            ))}
         </div>
     )
 }

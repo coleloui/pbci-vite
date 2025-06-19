@@ -1,31 +1,49 @@
+import { useEffect, useState } from 'react'
 import { Header } from '~/header/header'
-import { Background } from './background'
+// import { Background } from './background'
 
-
+import Tyler from './Tyler.jpg'
+import Trusses from './Trusses.jpg'
+import Const from './1116220932_HDR.jpg'
+import classNames from 'classnames'
 
 export function Welcome() {
 
+  const [pic, setPic] = useState(Tyler)
+  const [index, setIndex] = useState(0)
+  const picArr = [Tyler, Trusses, Const]
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setIndex((index + 1) % picArr.length)
+      setPic(picArr[index])
+    }, 5500)
+
+    return () => {
+      clearInterval(id)
+    }
+  }, [index])
+
   return (
-    <div className=''>
-      <Background />
-      <div className='x-3'>
-        <Header />
-        <main className="flex items-center justify-center pb-4 md:h-275 min-h-200">
-          <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
-            <div className="max-w-[800px] w-full space-y-6 px-6">
-              <nav className="rounded-3xl border border-gray-200 p-6 dark:border-gray-700 space-y-10">
-                <p className="text-pbci font-bold text-2xl text-center text-wrap">
-                  Do It Save, Do It Right, Keep It Clean, Customer Service
-                </p>
-                <p className=" text-pbci font-bold text-xl text-center text-wrap">
-                  Providing Quality Craftsmanship and Service for Over 30 Years
-                </p>
-              </nav>
-            </div>
+
+    <div className='bg-white'>
+      <Header />
+      <main className={classNames("flex items-center justify-center pb-4 md:h-275 min-h-200")}>
+        <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
+          <div className="max-w-[800px] w-full space-y-6 px-6">
+            <nav className="rounded-3xl border border-gray-200 p-6 dark:border-gray-700 space-y-10">
+              <p className="text-pbci font-bold text-2xl text-center text-wrap">
+                Do It Save, Do It Right, Keep It Clean, Customer Service
+              </p>
+              <p className=" text-pbci font-bold text-xl text-center text-wrap">
+                Providing Quality Craftsmanship and Service for Over 30 Years
+              </p>
+            </nav>
           </div>
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
+
   )
 }
 

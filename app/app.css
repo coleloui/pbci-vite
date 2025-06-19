@@ -11,7 +11,12 @@ body {
   @apply bg-white dark:bg-gray-950;
 }
 
-.testing {
-  -webkit-transition: 0.2s ease-in-out;
-transition: 0.2s ease-in-out;
+.arrive {
+  transition: opacity 1.5s ease-in-out;
+  opacity: 100;
+}
+
+.drop {
+  transition: opacity 1.5s ease-in-out;
+  opacity: 0;
 }
